@@ -9,6 +9,8 @@ import com.example.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -19,25 +21,25 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/all")
-    public Iterable<User> getAllUsers(){
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    @GetMapping("one-user/{id}")
+    @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable Long id ){
         return userService.getById(id);
     }
 
-    @PostMapping("/add-user")
+    @PostMapping
     public UserDTO create(@RequestBody CreateUserDTO createUserDTO){
         return userService.create(createUserDTO);
     }
 
-    @PutMapping("/edit-user/{id}")
+    @PutMapping("/{id}")
     public UserDTO updateUser(@PathVariable Long id, @RequestBody UpdateUserDTO updateUserDTO){
         return userService.update(id, updateUserDTO);
     }
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id){
          userService.delete(id);
     }

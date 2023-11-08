@@ -35,7 +35,10 @@ public class Movie {
     private String genre;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private List<Ticket> tickets;
+    private List<Ticket> ticketList;
+
+    @OneToMany(mappedBy = "movie")
+    private List<MovieSession> movieSessionList;
 
     public Movie(String title, String description, String genre) {
         this.title = title;

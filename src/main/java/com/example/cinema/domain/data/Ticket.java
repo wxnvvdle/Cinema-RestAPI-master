@@ -36,6 +36,9 @@ public class Ticket {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private MovieSession movieSession;
+
     public Ticket(int rowPlace, int seat, double price, Movie movie) {
         this.rowPlace = rowPlace;
         this.seat = seat;
